@@ -13,9 +13,10 @@ namespace UserManagement.Controllers
         UserManagementContext _context = new UserManagementContext();
 
         //GET: User
-        public ActionResult Index()
+        public ActionResult Index(int? page )
         {
-            return View();
+            var data = _context.TblUser.ToList().ToPagedList(page ?? 1, 3);
+            return View(data);
         }
 
         [HttpPost]
