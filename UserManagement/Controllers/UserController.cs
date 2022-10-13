@@ -15,7 +15,7 @@ namespace UserManagement.Controllers
         //GET: User
         public ActionResult Index(int? page )
         {
-            var data = _context.TblUser.ToList().ToPagedList(page ?? 1, 3);
+            var data = _context.TblUser.ToList().ToPagedList(page ?? 1, 1);
             return View(data);
         }
 
@@ -44,7 +44,7 @@ namespace UserManagement.Controllers
         [HttpGet]
         public ActionResult GetAll(int? page)
         {
-            var data = _context.TblUser.ToList().ToPagedList(page ?? 1,3);
+            var data = _context.TblUser.ToList().ToPagedList(page ?? 1,1);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
