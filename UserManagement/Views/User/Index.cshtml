@@ -1,0 +1,504 @@
+﻿
+<div class="">
+    <section class="content" style="
+    margin-top:30px; 
+    margin-bottom:50px;
+    border:1px solid black;
+    padding-top:30px;
+    margin-right:20px;
+    margin-left:20px;
+    padding-left:25px;
+    padding-right:25px;
+    ">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <div class="form-group">
+                                <input type="hidden" name="Id" id="id">
+                                @*<h6>Name</h6>
+                                    <input type="text" class="form-control" autocomplete="off" placeholder="Enter Name" name="title" id="name">
+                                    <input type="text" class="form-control" autocomplete="off" placeholder="Enter Email" name="Email" id="email" />
+                                    <input type="text" class="form-control" autocomplete="off" placeholder="Enter Address" name="Address" id="address" />
+                                    <input type="text" class="form-control" autocomplete="off" placeholder="Enter Phone" name="PhoneNumber" id="phone" />*@
+
+                                <div class="col-sm-12">
+
+                                    <div class="form-group">
+
+                                        <input type="hidden" id="id" name="Id" readonly>
+
+                                        <div class="col-md-2 control-label">
+                                            <label>Name:</label>
+                                        </div>
+
+                                        <div class=" col-md-3">
+                                            <input type="text" name="Name" id="name" maxlength="50">
+                                        </div>
+                                        <div class="col-md-2">
+
+                                        </div>
+
+                                        <div class=" col-md-2 control-label">
+                                            <label>Email:</label>
+                                        </div>
+                                        <div class="col-lg-3 col-md-2">
+                                            <input type="text" name="Email" id="email" maxlength="50">
+                                            <span class="form_error" id="invalid_email"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class=" col-md-2 control-label">
+                                            <label>Address:</label>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <input type="text" name="Address" id="address" maxlength="50">
+                                        </div>
+
+                                        <div class="col-md-2">
+
+                                        </div>
+
+                                        <div class=" col-md-2 control-label">
+                                            <label>Phone:</label>
+                                        </div>
+                                        <div class=" col-md-3">
+                                            <input type="text" name="Phone" id="phone" maxlength="10">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-info" onclick="CreatePost();" id="createtbn">Create </button>
+                                    <button class="btn btn-danger" onclick="Update();" id="updatebtn">Update </button>
+
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<!--Main Table Content-->
+<section class="content">
+    <div class="container-fluid">
+        <div class="All-Post">
+            <div class="flexcreate">
+
+            </div>
+            <div class="postable TBL">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="getAllPost">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+
+            </div>
+            <section class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card mb-4">
+                                <div class="card-header pb-0">
+                                    <div class="form-group">
+                                        <input type="hidden" name="Id" id="id">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Name" name="title" id="name">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Email" name="Email" id="email" />
+                                        <label>Address</label>
+                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Address" name="Address" id="address" />
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Phone" name="PhoneNumber" id="phone" />
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+@*for delete*@
+
+<!-- Modal -->
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Do you want to delete?</h5>
+                <input type="hidden" id="ids" name="Id" readonly>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-info" data-dismiss="modal">Close</button>
+                <button class="btn btn-danger" onclick="Delete();" data-dismiss="modal"> >Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*for update*@
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Do you want to update?</h5>
+                <input type="hidden" id="idup" name="Id" readonly>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+
+
+                        <div class="col-md-2 control-label">
+                            <label>Name</label>
+                        </div>
+
+                        <div class=" col-md-3">
+                            <input type="text" name="Name" id="nameup" maxlength="15">
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+
+                        <div class=" col-md-2 control-label">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-lg-3 col-md-2">
+                            <input type="text" name="Email" id="emailup">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class=" col-md-2 control-label">
+                            <label>Address</label>
+                        </div>
+                        <div class=" col-md-3">
+                            <input type="text" name="Address" id="addressup">
+                        </div>
+
+                        <div class="col-md-2">
+
+                        </div>
+
+                        <div class=" col-md-2 control-label">
+                            <label>Phone</label>
+                        </div>
+                        <div class=" col-md-3">
+                            <input type="text" name="Phone" id="phoneup">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+                    <button type="submit" name="Create" onclick="Update();" id="updatebtn">Update</button>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Delete();" data-dismiss="modal"> >Delete</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('documennt').ready(function () {
+            $("#updatebtn").hide();
+            $("#createbtn").show();
+            GetAll();
+        });
+
+      
+        $("#name").keypress(function (e) {
+            var key = e.keyCode;
+            if (key >= 48 && key <= 57) {
+                e.preventDefault();
+            }
+        });
+
+        $("#email").keypress(function (e) {
+            var key = e.keyCode;
+            if (key >= 65 && key <= 90) {
+                e.preventDefault();
+            }
+        });
+
+        $("#address").keypress(function (e) {
+            var key = e.keyCode;
+            if (key <= 98 && key >= 123 || key <=66 && key >= 91) {
+                e.preventDefault();
+            }
+        });
+
+        var regExp = /[0-9\.\,]/;
+        $('#phone').on('keydown keyup', function (e) {
+            var value = String.fromCharCode(e.which) || e.key;
+            console.log(e);
+            // Only numbers, dots and commas
+            if (!regExp.test(value)
+                && e.which != 188 // ,
+                && e.which != 190 // .
+                && e.which != 8   // backspace
+                && e.which != 46  // delete
+                && (e.which < 37  // arrow keys
+                    || e.which > 40)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+
+        function CreatePost() {
+            debugger;
+            if ($('#name').val() === '') {
+                toastr.error("Name required");
+                $('#name').text("Name is required");
+                return false;
+            }
+            if ($('#address').val() === '') {
+                toastr.error("Address required");
+                return false;
+            }
+            if ($('#phone').val() === '') {
+                toastr.error("Phone required");
+                return false;
+            }
+            if ($('#email').val() === '') {
+                toastr.error("Email required");
+                return false;
+            }
+            $.ajax({
+                url: 'User/Insert',
+                method: 'post',
+                dataType: 'json',
+                data: {
+                    Name: $('#name').val(),
+                    Address: $('#address').val(),
+                    Email: $('#email').val(),
+                    Phone: $('#phone').val()
+                },
+                success: function (data) {
+                    toastr.success("Data Added Successfully");
+                    GetAll();
+                },
+                error: function (data) {
+                    //toaster.success("Faied to update");
+                    alert("failed");
+                }
+
+            });
+        }
+
+        function GetAll() {
+
+            ClearAll();
+            $("#updatebtn").hide();
+            $("#createbtn").show();
+            $.ajax({
+                url: '/User/GetAll',
+                method: 'get',
+                datatype: 'json',
+                success: function (data) {
+                    var cs = '';
+                    var i = 1;
+                    $.each(data, function (key, item) {
+                        cs += '<tr>'
+                        cs += '<td>' + i + '</td>';
+                        cs += '<td>' + item.Name + '</td>';
+                        cs += '<td>' + item.Email + '</td>';
+                        cs += '<td>' + item.Address + '</td>';
+                        cs += '<td>' + item.Phone + '</td>';
+                        cs += '<td><button class="btn btn-info data-toggle="modal" data-target="#myModal" onclick="GetPostById(' + item.Id + ');">Edit </button> <button class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" onclick="GetDeleteById(' + item.Id + ');">Delete</button></td></tr>';
+                        i++;
+                    });
+                    $('#getAllPost').html(cs);
+                }
+            });
+        }
+
+        function Delete() {
+            debugger;
+            var data = {
+                id: $('#ids').val()
+            }
+
+            $.ajax({
+                url: '/User/Delete',
+                method: 'Post',
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    toastr.success("Data Deleted Successfully");
+                    GetAll();
+                },
+                error: function (data) {
+                    //    toaster.error("Unable to delete");
+                }
+            });
+        }
+
+
+        function GetDeleteById(id) {
+            debugger;
+
+            $.ajax({
+                url: '/User/DeleteFromMoadl?id=' + id,
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    $('#ids').val(data.Id);
+                },
+                error: function (data) {
+                    //    toaster.error(data);
+                }
+            });
+        }
+
+        function GetPostById(id) {
+            $("#updatebtn").show();
+            $("#createtbn").hide();
+            $.ajax({
+                url: '/User/GetById?id=' + id,
+                method: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    debugger;
+
+                    $('#id').val(data.Id);
+                    $('#name').val(data.Name);
+                    $('#address').val(data.Address);
+                    $('#email').val(data.Email);
+                    $('#phone').val(data.Phone);
+                },
+                error: function (data) {
+                    //    toaster.error("Couldnot fetch data");
+                }
+            });
+        }
+
+        function Update() {
+            debugger;
+            if ($('#name').val() === '') {
+                toastr.error("Name required");
+                return false;
+            }
+            if ($('#address').val() === '') {
+                toastr.error("Address required");
+                return false;
+            }
+            if ($('#phone').val() === '') {
+                toastr.error("Phone required");
+                return false;
+            }
+            if ($('#email').val() === '') {
+                toastr.error("Email required");
+                return false;
+            }
+
+            $.ajax({
+                url: 'User/Update',
+                method: 'post',
+                dataType: 'json',
+                data: {
+                    Id: $('#id').val(),
+                    Name: $('#name').val(),
+                    Address: $('#address').val(),
+                    Email: $('#email').val(),
+                    Phone: $('#phone').val()
+                },
+                success: function (data) {
+                    GetAll();
+                    $("#createtbn").show();
+                    $("#updatetbn").hide();
+                    toastr.success("Data Updated Successfully");
+
+                },
+                error: function (data) {
+                    toastr.success("Faied to update");
+                    
+                }
+
+            });
+        }
+
+        function ClearAll() {
+            $('#name').val('');
+            $('#address').val('');
+            $('#email').val('');
+            $('#phone').val('');
+        }
+
+
+    </script>
+}
+
