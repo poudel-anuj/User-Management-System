@@ -1,4 +1,11 @@
 ﻿
+@using PagedList
+@using PagedList.Mvc;
+@*@using System.Object;*@
+
+@*@model IPagedList<UserManagement.Models.TblUser>*@
+
+
 <div class="">
     <section class="content" style="
     margin-top:30px; 
@@ -35,7 +42,7 @@
                                         </div>
 
                                         <div class=" col-md-3">
-                                            <input type="text" name="Name" id="name" maxlength="50">
+                                            <input type="text" name="Name" id="name" maxlength="15">
                                         </div>
                                         <div class="col-md-2">
 
@@ -45,7 +52,7 @@
                                             <label>Email:</label>
                                         </div>
                                         <div class="col-lg-3 col-md-2">
-                                            <input type="text" name="Email" id="email" maxlength="50">
+                                            <input type="email" name="Email" id="email" maxlength="20">
                                             <span class="form_error" id="invalid_email"></span>
                                         </div>
                                     </div>
@@ -57,7 +64,7 @@
                                             <label>Address:</label>
                                         </div>
                                         <div class=" col-md-3">
-                                            <input type="text" name="Address" id="address" maxlength="50">
+                                            <input type="text" name="Address" id="address" maxlength="15">
                                         </div>
 
                                         <div class="col-md-2">
@@ -120,6 +127,7 @@
                     <tbody id="getAllPost">
                     </tbody>
                 </table>
+                @*@Html.PagedListPager(Model, page => Url.Action("Index","User", new { page }))*@
             </div>
         </div>
     </div>
@@ -281,21 +289,32 @@
       
         $("#name").keypress(function (e) {
             var key = e.keyCode;
-            if (key >= 48 && key <= 57) {
+            if ((key >= 65 && key <= 90) || (key >= 97 && key <= 122) || key == 32){
+                return true;
+            }
+            else {
                 e.preventDefault();
             }
         });
 
         $("#email").keypress(function (e) {
             var key = e.keyCode;
-            if (key >= 65 && key <= 90) {
+            if (key == 64 || key == 46 || (key >= 48 && key <= 57)
+                || (key >= 65 && key <= 90) || (key >= 97 && key <= 122)) {
+                return true;
+            }
+            else {
                 e.preventDefault();
             }
         });
 
         $("#address").keypress(function (e) {
             var key = e.keyCode;
-            if (key <= 98 && key >= 123 || key <=66 && key >= 91) {
+            if (key == 32 ||key == 45 || (key >= 48 && key <= 57)
+                || (key >= 65 && key <= 90) || (key >= 97 && key <= 122)) {
+                return true;
+            }
+            else {
                 e.preventDefault();
             }
         });

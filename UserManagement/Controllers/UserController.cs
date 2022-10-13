@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -40,9 +41,9 @@ namespace UserManagement.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAll()
+        public ActionResult GetAll(int? page)
         {
-            var data = _context.TblUser.ToList();
+            var data = _context.TblUser.ToList().ToPagedList(page ?? 1,3);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 

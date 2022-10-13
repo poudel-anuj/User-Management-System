@@ -155,3 +155,7 @@ C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManageme
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.csproj.CopyComplete
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.pdb
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.dll
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.Mvc.dll
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.xml
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.Mvc.xml
