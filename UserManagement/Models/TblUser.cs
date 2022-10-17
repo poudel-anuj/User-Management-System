@@ -14,8 +14,9 @@ namespace UserManagement.Models
         [Required(ErrorMessage = "Please enter your name"), MaxLength(50)]
         public string Name { get; set; }
 
-        //[Required(ErrorMessage = "Please enter your Email"), MaxLength(50)]
-        public string Email { get; set; }
+        [RegularExpression("^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]*\\.[A-Za-z0-9-]{2,}$",
+                ErrorMessage = "Email is required and must be properly formatted.")]
+        [Display(Order = 10, Name = "Email")] public string Email { get; set; }
 
         //[Required(ErrorMessage = "Please enter your Address"), MaxLength(50)]
 

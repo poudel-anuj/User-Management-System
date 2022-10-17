@@ -1,8 +1,9 @@
-﻿@model IPagedList<UserManagement.Models.TblUser>
-
+﻿
 @using PagedList
 @using PagedList.Mvc;
-@*@using System.Object;*@
+@model IPagedList<UserManagement.Models.TblUser>
+
+
 
 
 
@@ -35,7 +36,8 @@
 
                                     <div class="form-group">
 
-                                        <input type="hidden" id="id" name="Id" readonly>
+                                        <input type="hidden" id="id" name="Id">
+                                        <input type="hidden" id="page_id" name="pageId">
 
                                         <div class="col-md-2 control-label">
                                             <label>Name:</label>
@@ -53,7 +55,6 @@
                                         </div>
                                         <div class="col-lg-3 col-md-2">
                                             <input type="email" name="Email" id="email" maxlength="20">
-                                            <span class="form_error" id="invalid_email"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -146,11 +147,14 @@
                         </tr>
                     </thead>
                     <tbody id="getAllPost">
+                        @{
+                            int i = 1;
+                        }
                         @foreach (var item in Model)
                         {
-                            var i = 1;
                             <tr>
-                                <td>i</td>
+
+                                <td>@i</td>
 
                                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
 
@@ -161,63 +165,20 @@
                                 <td>@Html.DisplayFor(modelItem => item.Phone)</td>
                                 <td><button class="btn btn-info" data-toggle="modal" id="editbtn" onclick="GetPostById( @Html.DisplayFor(modelItem => item.Id) );">Edit </button> <button class="btn btn-danger" data-toggle="modal" data-target="#deletemodal" onclick="GetDeleteById(@Html.DisplayFor(modelItem => item.Id));">Delete</button></td>
                             </tr>
-                            i =i +1;
+                            i = i + 1;
 
                         }
                     </tbody>
                 </table>
-                @Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page }))
+                <div id="loadPager">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", "User", new { page, }))
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-
-            </div>
-            <section class="content">
-                <div class="container-fluid">
-
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="card mb-4">
-                                <div class="card-header pb-0">
-                                    <div class="form-group">
-                                        <input type="hidden" name="Id" id="id">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Name" name="title" id="name">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Email" name="Email" id="email" />
-                                        <label>Address</label>
-                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Address" name="Address" id="address" />
-                                        <label>Phone</label>
-                                        <input type="text" class="form-control" autocomplete="off" placeholder="Enter Phone" name="PhoneNumber" id="phone" />
-                                    </div>
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-        </div>
-
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-</div>
 
 @*for delete*@
 
@@ -243,87 +204,33 @@
     </div>
 </div>
 
+@*@{
+        int  pageNum = @ViewBag.pageNum;
 
-@*for update*@
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Do you want to update?</h5>
-                <input type="hidden" id="idup" name="Id" readonly>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="col-sm-12">
-                    <div class="form-group">
+    }
+    <p>@pageNum</p>*@
 
 
-                        <div class="col-md-2 control-label">
-                            <label>Name</label>
-                        </div>
-
-                        <div class=" col-md-3">
-                            <input type="text" name="Name" id="nameup" maxlength="15">
-                        </div>
-                        <div class="col-md-2">
-
-                        </div>
-
-                        <div class=" col-md-2 control-label">
-                            <label>Email</label>
-                        </div>
-                        <div class="col-lg-3 col-md-2">
-                            <input type="text" name="Email" id="emailup">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <div class=" col-md-2 control-label">
-                            <label>Address</label>
-                        </div>
-                        <div class=" col-md-3">
-                            <input type="text" name="Address" id="addressup">
-                        </div>
-
-                        <div class="col-md-2">
-
-                        </div>
-
-                        <div class=" col-md-2 control-label">
-                            <label>Phone</label>
-                        </div>
-                        <div class=" col-md-3">
-                            <input type="text" name="Phone" id="phoneup">
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-
-                    <button type="submit" name="Create" onclick="Update();" id="updatebtn">Update</button>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="Delete();" data-dismiss="modal"> >Delete</button>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 @section scripts{
     <script>
         $('documennt').ready(function () {
             $("#updatebtn").hide();
             $("#createbtn").show();
-            /*  GetAll();*/
         });
+
+
+        //$("#loadPager").on('click', '.pagination a', function (event) {
+        //    debugger
+        //    event.preventDefault();
+        //    debugger
+        //    var self = window.location.href;
+
+        //    var page = self.split('page=')[1];
+        //    var page = null;
+        //    var pageNum = page == null ? 1 : page;
+        //    GetAll(pageNum);
+        //});
 
 
         $("#name").keypress(function (e) {
@@ -336,16 +243,22 @@
             }
         });
 
-        $("#email").keypress(function (e) {
-            var key = e.keyCode;
-            if (key == 64 || key == 46 || (key >= 48 && key <= 57)
-                || (key >= 65 && key <= 90) || (key >= 97 && key <= 122)) {
-                return true;
-            }
-            else {
-                e.preventDefault();
-            }
-        });
+        //$("#email").blur(function (e) {
+        //    //var key = e.keyCode;
+        //    //if (key == 64 || key == 46 || (key >= 48 && key <= 57)
+        //    //    || (key >= 65 && key <= 90) || (key >= 97 && key <= 122)) {
+        //    //    return true;
+        //    //}
+        //    //else {
+        //    //    e.preventDefault();
+        //    //}
+        //    //var email = $('#email').val();
+        //    //mailformat = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        //    //if (!(email.match(mailformat))) {
+        //    //    toastr.error("Invalid Email");
+        //    //}
+
+        //});
 
         $("#address").keypress(function (e) {
             var key = e.keyCode;
@@ -378,6 +291,11 @@
 
         function CreatePost() {
             debugger;
+            var mailformat = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var phoneno = /^[0-9]*$/;
+            var email = $('#email').val();
+            var phone = $('#phone').val();
+
             if ($('#name').val() === '') {
                 toastr.error("Name required");
                 $('#name').text("Name is required");
@@ -391,10 +309,36 @@
                 toastr.error("Phone required");
                 return false;
             }
+            else if (!(phone.match(phoneno))) {
+
+
+                toastr.error("Invalid Number");
+            }
             if ($('#email').val() === '') {
+
                 toastr.error("Email required");
                 return false;
             }
+            else if (!(email.match(mailformat))) {
+
+
+                toastr.error("Invalid Email");
+                return false;
+            }
+
+
+
+            //if ($("#email").val() != '@@') {
+            //    toastr.error("Email should contain '@@' and '.' sign");
+            //    return false;
+            //}
+
+            //if ($("#email").val() != '.') {
+            //    toastr.error("Email should contain '@@' and '.' sign");
+            //    return false;
+            //}
+
+
             $.ajax({
                 url: 'User/Insert',
                 method: 'post',
@@ -407,7 +351,12 @@
                 },
                 success: function (data) {
                     toastr.success("Data Added Successfully");
-                    GetAll();
+                    ClearAll();
+                    GetAll(1);
+                    window.history.pushState("object or string", "Title", "/User?page=" + 1);
+
+                    var self = window.location.href;
+                    $("#loadPager").load(self + ' #loadPager');
                 },
                 error: function (data) {
                     //toaster.success("Faied to update");
@@ -417,18 +366,28 @@
             });
         }
 
-        function GetAll() {
-
+        function GetAll(pageNum) {
+            debugger
             ClearAll();
             $("#updatebtn").hide();
             $("#createbtn").show();
+
+            //let param = parseInt($(this).attr('page')
+
             $.ajax({
-                url: '/User/GetAll',
+                url: '/User/GetAll?page=' + pageNum,
                 method: 'get',
                 datatype: 'json',
                 success: function (data) {
+
+                    //if (data == null) {
+                    //    pageNum = pageNum - 1;
+                    //    window.history.pushState("object or string", "Title", "/User?page=" + pageNum);
+                    //}
+
                     var cs = '';
-                    var i = 1;
+                    var i = parseInt(pageNum - 1) * 3 + 1;
+                    //var i = 1;
                     $.each(data, function (key, item) {
                         cs += '<tr>'
                         cs += '<td>' + i + '</td>';
@@ -440,34 +399,77 @@
                         i++;
                     });
                     $('#getAllPost').html(cs);
+
+
+                    if (data != null) {
+
+                        window.history.pushState("object or string", "Title", "/User?page=" + pageNum);
+                        $("#loadPager").load(window.location.href + ' #loadPager');
+
+                    }
+                    else {
+                        pageNum = pageNum - 1;
+                        window.history.pushState("object or string", "Title", "/User?page=" + pageNum);
+                        $("#loadPager").load(window.location.href + ' #loadPager');
+
+
+                    }
+
+
+
                 }
             });
         }
 
+
+
         function Delete() {
-            debugger;
             var data = {
                 id: $('#ids').val()
             }
+            var self = window.location.href;
+            var page = self.split('page=')[1];
 
             $.ajax({
-                url: '/User/Delete',
+                url: '/User/Delete?page=' + page,
                 method: 'Post',
                 dataType: 'json',
                 data: data,
-                success: function (data) {
+                success: function (datas) {
+                    var self = window.location.href;
+                    var pageNum = self.split('page=')[1];
+
+                    if (!$.trim(datas)) {
+                        pageNum = pageNum - 1;
+                        var url = window.history.pushState("object or string", "Title", "/User?page=" + pageNum);
+                        var self = window.location.href;
+                        $("#loadpager").load(url + ' #loadpager');
+                        GetAll(pageNum);
+                    }
+                    else {
+                        pageNum = pageNum;
+
+                        var url = window.history.pushState("object or string", "Title", "/User?page=" + pageNum);
+
+                        GetAll(pageNum);
+                        var self = window.location.href;
+                        $("#loadpager").load(url + ' #loadpager');
+
+
+                    }
+                    //var self = window.location.href;
+                    //$("#loadpager").load(self + ' #loadpager');
                     toastr.success("Data Deleted Successfully");
-                    GetAll();
+
                 },
                 error: function (data) {
-                    //    toaster.error("Unable to delete");
+                    toaster.error("Unable to delete");
                 }
             });
         }
 
 
         function GetDeleteById(id) {
-            debugger;
 
             $.ajax({
                 url: '/User/DeleteFromMoadl?id=' + id,
@@ -491,7 +493,6 @@
                 method: 'get',
                 dataType: 'json',
                 success: function (data) {
-                    debugger;
 
                     $('#id').val(data.Id);
                     $('#name').val(data.Name);
@@ -506,7 +507,6 @@
         }
 
         function Update() {
-            debugger;
             if ($('#name').val() === '') {
                 toastr.error("Name required");
                 return false;
@@ -536,7 +536,12 @@
                     Phone: $('#phone').val()
                 },
                 success: function (data) {
-                    GetAll();
+                    var self = window.location.href;
+                    $("#postable").load(self + ' #postable');
+                    var pageNum = self.split('page=')[1];
+                    GetAll(pageNum);
+                    ClearAll();
+
                     $("#createtbn").show();
                     $("#updatetbn").hide();
                     toastr.success("Data Updated Successfully");
@@ -556,6 +561,24 @@
             $('#email').val('');
             $('#phone').val('');
         }
+
+
+        $(document).ready(function () {
+
+            $(document).on('click', '#loadPager a', function (event) {
+                debugger;
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                //var url = window.history.pushState("object or string", "Title", "/User?page=" + pageNum);
+                $("#loadPager").load(window.location.href + ' #loadPager');
+                GetAll(page);
+
+
+            });
+
+
+
+        });
 
 
     </script>

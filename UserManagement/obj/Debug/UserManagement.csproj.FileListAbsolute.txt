@@ -79,6 +79,8 @@ C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Microsoft.Identity
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Newtonsoft.Json.dll
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.dll
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.Mvc.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\System.Buffers.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\System.Collections.Immutable.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\System.ComponentModel.Annotations.dll
@@ -122,6 +124,8 @@ C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Microsoft.Identity
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Microsoft.IdentityModel.Protocols.xml
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.xml
+C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.Mvc.xml
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\System.Buffers.xml
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\System.Collections.Immutable.xml
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\System.Diagnostics.DiagnosticSource.xml
@@ -150,12 +154,7 @@ C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\pt-BR\Microsoft.Da
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.csproj.AssemblyReference.cache
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.csproj.CoreCompileInputs.cache
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.csproj.CopyComplete
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.dll
 C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\obj\Debug\UserManagement.pdb
-C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.dll
-C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.Mvc.dll
-C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.xml
-C:\Users\Grafi\Desktop\anuj\UserManagement\UserManagement\bin\PagedList.Mvc.xml

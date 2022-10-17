@@ -242,6 +242,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Pager.cs" />
     <Compile Include="Models\TblUser.cs" />
     <Compile Include="Models\UserManagementContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
